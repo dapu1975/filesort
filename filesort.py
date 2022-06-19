@@ -32,6 +32,7 @@ __email__ = "pust.daniel@outlook.com"
 __status__ = "Development"
 
 try:
+    os.system('clear')
     # read config file
     config = configparser.ConfigParser()
     config.read('filesort.ini')
@@ -71,29 +72,36 @@ try:
     for root, dirs, files in os.walk(source_path):
         for name in files:
             ext = pathlib.Path(name).suffix[1:].lower()
-            if (ext not in unwanted) and (ext not in extensions):
+            if (len(ext) > 0) and \
+                (ext not in unwanted) and \
+                    (ext not in extensions):
                 extensions.append(ext)
-
+                print("a", end='')
+            else:
+                print(".", end='')
+    print("")
     # create target pathes
     for ext in extensions:
         try:
             dummy = os.path.join(target_path, ext)
-            #os.makedirs(dummy, mode = 0o777, exist_ok=True)
+            os.makedirs(dummy, mode=0o777, exist_ok=True)
             pass
         except Exception as e:
             raise UserWarning(e)
         print("created path {}". format(dummy))
 
+    # create logfile fs_date_time.log in folder 'target'
     # copy files to pathes with hash and logging in logfile
     for root, dirs, files in os.walk(source_path):
         for name in files:
             ext = pathlib.Path(name).suffix[1:].lower()
             if ext in extensions:
                 source = os.path.join(root, name)
-                target = os.path.join(target_path, ext)
+                target = os.path.join(target_path, name)
                 # copy or move file
                 print("copy file {} to {}".format(source, target))
-                shutil.copyfile(source, target)
+                #TODO: copy or move
+                #shutil.copyfile(source, target)
                 # hash
                 hash_md5 = hs.md5()
                 with open(source, 'rb') as file:
