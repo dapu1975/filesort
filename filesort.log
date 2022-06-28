@@ -1,0 +1,109 @@
+2022-06-28 14:33:09,134 INFO: Start
+2022-06-28 14:33:09,155 INFO: created path /home/dapu/fs/data/log
+2022-06-28 14:33:09,155 INFO: created path /home/dapu/fs/data/igpi
+2022-06-28 14:33:09,161 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Logs/IntelCpHDCPSvc.log to /home/dapu/fs/data/IntelCpHDCPSvc.log [HASH;d41d8cd98f00b204e9800998ecf8427e]
+2022-06-28 14:33:09,162 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Logs/IntelCPHS.log to /home/dapu/fs/data/IntelCPHS.log [HASH;d41d8cd98f00b204e9800998ecf8427e]
+2022-06-28 14:33:09,163 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Logs/IntelGFX.log to /home/dapu/fs/data/IntelGFX.log [HASH;7cea04f679df3fec0a18d982ed97e617]
+2022-06-28 14:33:09,163 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Logs/IntelGFXCoin.log to /home/dapu/fs/data/IntelGFXCoin.log [HASH;403c2918c3c7113009028a2481dc40db]
+2022-06-28 14:33:09,164 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Profiles/IntelGraphicsProfiles/Brighten Video.man.igpi to /home/dapu/fs/data/Brighten Video.man.igpi [HASH;1206dbca0b83e4b8d28ea2cb1c8f3e8b]
+2022-06-28 14:33:09,165 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Profiles/IntelGraphicsProfiles/Darken Video.man.igpi to /home/dapu/fs/data/Darken Video.man.igpi [HASH;426f736f5dae0a2457b56cb803ad00e9]
+2022-06-28 14:33:09,166 INFO: copy file /media/dapu/380ED1750ED12C9E/Intel/Profiles/IntelGraphicsProfiles/Enhance Video Colors.man.igpi to /home/dapu/fs/data/Enhance Video Colors.man.igpi [HASH;8a573fc178e23e5ecc553392e51736c5]
+2022-06-28 14:33:09,166 INFO: Number of moved/copied files: 7
+2022-06-28 14:33:09,166 INFO: Stop
+2022-06-28 15:27:20,425 INFO: Start
+2022-06-28 15:27:20,427 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:27:20,427 INFO: Stop
+2022-06-28 15:28:15,066 INFO: Start
+2022-06-28 15:28:15,074 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:28:15,074 INFO: Stop
+2022-06-28 15:28:38,182 INFO: Start
+2022-06-28 15:28:38,187 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:28:38,187 INFO: Stop
+2022-06-28 15:28:43,892 INFO: Start
+2022-06-28 15:28:43,898 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:28:43,898 INFO: Stop
+2022-06-28 15:28:46,870 INFO: Start
+2022-06-28 15:28:46,875 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:28:46,875 INFO: Stop
+2022-06-28 15:29:20,197 INFO: Start
+2022-06-28 15:29:20,207 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:29:20,207 INFO: Stop
+2022-06-28 15:29:24,452 INFO: Start
+2022-06-28 15:44:11,633 INFO: Start
+2022-06-28 15:44:11,637 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:44:11,637 INFO: Stop
+2022-06-28 15:44:15,277 INFO: Start
+2022-06-28 15:44:39,404 INFO: Start
+2022-06-28 15:44:39,411 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:44:39,411 INFO: Stop
+2022-06-28 15:44:45,271 INFO: Start
+2022-06-28 15:45:17,289 INFO: Start
+2022-06-28 15:45:17,294 ERROR: existing target path /home/dapu/fs/data
+2022-06-28 15:45:17,295 INFO: Stop
+2022-06-28 15:45:20,567 INFO: Start
+2022-06-28 16:21:23,436 INFO: Start
+2022-06-28 16:21:23,440 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:23,440 INFO: Stop
+2022-06-28 16:21:28,757 INFO: Start
+2022-06-28 16:21:28,761 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:28,761 INFO: Stop
+2022-06-28 16:21:48,818 INFO: Start
+2022-06-28 16:21:48,823 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:48,823 INFO: Stop
+2022-06-28 16:21:49,932 INFO: Start
+2022-06-28 16:21:49,936 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:49,936 INFO: Stop
+2022-06-28 16:21:52,837 INFO: Start
+2022-06-28 16:21:52,841 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:52,841 INFO: Stop
+2022-06-28 16:21:54,183 INFO: Start
+2022-06-28 16:21:54,187 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:54,188 INFO: Stop
+2022-06-28 16:21:55,322 INFO: Start
+2022-06-28 16:21:55,326 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:55,326 INFO: Stop
+2022-06-28 16:21:56,276 INFO: Start
+2022-06-28 16:21:56,280 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:56,280 INFO: Stop
+2022-06-28 16:21:57,271 INFO: Start
+2022-06-28 16:21:57,275 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:57,275 INFO: Stop
+2022-06-28 16:21:58,460 INFO: Start
+2022-06-28 16:21:58,465 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:58,465 INFO: Stop
+2022-06-28 16:21:59,339 INFO: Start
+2022-06-28 16:21:59,344 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:21:59,344 INFO: Stop
+2022-06-28 16:22:00,118 INFO: Start
+2022-06-28 16:22:00,122 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:00,123 INFO: Stop
+2022-06-28 16:22:00,954 INFO: Start
+2022-06-28 16:22:00,958 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:00,959 INFO: Stop
+2022-06-28 16:22:01,762 INFO: Start
+2022-06-28 16:22:01,767 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:01,767 INFO: Stop
+2022-06-28 16:22:03,024 INFO: Start
+2022-06-28 16:22:03,028 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:03,028 INFO: Stop
+2022-06-28 16:22:04,024 INFO: Start
+2022-06-28 16:22:04,028 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:04,029 INFO: Stop
+2022-06-28 16:22:15,348 INFO: Start
+2022-06-28 16:22:15,352 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:15,352 INFO: Stop
+2022-06-28 16:22:20,166 INFO: Start
+2022-06-28 16:22:20,170 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:20,170 INFO: Stop
+2022-06-28 16:22:29,847 INFO: Start
+2022-06-28 16:22:29,851 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:22:29,851 INFO: Stop
+2022-06-28 16:23:01,527 INFO: Start
+2022-06-28 16:23:01,532 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:23:01,532 INFO: Stop
+2022-06-28 16:23:15,201 INFO: Start
+2022-06-28 16:23:15,206 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:23:15,206 INFO: Stop
+2022-06-28 16:23:34,438 INFO: Start
+2022-06-28 16:23:34,442 ERROR: _get_positional_kwargs() missing 1 required positional argument: 'dest'
+2022-06-28 16:23:34,442 INFO: Stop

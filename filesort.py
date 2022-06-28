@@ -6,18 +6,11 @@ scan a given directory for files an sort them by extension
 for jessy lohmann who has lost important photos
 """
 
-# TODO: pfad für die Suche
-# TODO: dateiendungen die nicht erfasst werden sollen
-# TODO: zielpfad, 'data' wird dort erstellt / prüfen wenn ziel existiert abbruch
-# TODO: logfile mit allen files, hash und größe/datum
-# TODO: erst ohne undelete danach mit
-# TODO: immer dryrun nur parameter --DoIt macht wirklich was
-# TODO: parameter für copy
-# TODO: parameter für move
-
+import argparse
 import configparser
 import getpass
 import hashlib as hs
+import logging
 import os
 import pathlib
 import shutil
@@ -32,7 +25,23 @@ __email__ = "pust.daniel@outlook.com"
 __status__ = "Development"
 
 try:
+    FORMAT = "%(asctime)-15s %(levelname)s: %(message)s"
+    logging.basicConfig(filename="filesort.log",
+                        format=FORMAT, level=logging.INFO)
+    logging.info('Start')
     os.system('clear')
+
+    parser = argparse.ArgumentParser(description=__copyright__ + ' -> filesort\
+         create directorys with the name of the file extensions and copy the files there.')
+    # dryrun
+    parser.add_argument()
+    # debugmode -> logger
+    parser.add_argument()
+    # actionmode copy/move
+    parser.add_argument()
+
+    args = parser.parse_args()
+
     # read config file
     config = configparser.ConfigParser()
     config.read('filesort.ini')
@@ -60,7 +69,7 @@ try:
 
     # create target path
     try:
-        #os.makedirs(target_path, mode = 0o777, exist_ok=True)
+        # os.makedirs(target_path, mode = 0o777, exist_ok=True)
         pass
     except Exception as e:
         raise UserWarning(e)
@@ -79,7 +88,8 @@ try:
                 print("a", end='')
             else:
                 print(".", end='')
-    print("")
+    print("\n")
+
     # create target pathes
     for ext in extensions:
         try:
@@ -88,10 +98,13 @@ try:
             pass
         except Exception as e:
             raise UserWarning(e)
-        print("created path {}". format(dummy))
+        msg = "created path {}". format(dummy)
+        print(msg)
+        logging.info(msg)
+    print("")
 
-    # create logfile fs_date_time.log in folder 'target'
     # copy files to pathes with hash and logging in logfile
+    file_count = 0
     for root, dirs, files in os.walk(source_path):
         for name in files:
             ext = pathlib.Path(name).suffix[1:].lower()
@@ -99,21 +112,26 @@ try:
                 source = os.path.join(root, name)
                 target = os.path.join(target_path, name)
                 # copy or move file
-                print("copy file {} to {}".format(source, target))
-                #TODO: copy or move
-                #shutil.copyfile(source, target)
+
+                # TODO: copy or move
+                # shutil.copyfile(source, target)
+                # shutil.move(source, target)
                 # hash
                 hash_md5 = hs.md5()
                 with open(source, 'rb') as file:
                     buffer = file.read()
                     hash_md5.update(buffer)
-                    print('hash', hash_md5.hexdigest())
-                # logentry
-                # count files
-
+                    msg = "copy file {} to {} [HASH;{}]".format(
+                        source, target, hash_md5.hexdigest())
+                    print(msg)
+                    logging.info(msg)
+                    # count files
+                    file_count += 1
     # write counter to log
-
-    raise UserWarning("\nend.")
+    logging.info("Number of moved/copied files: {}".format(file_count))
 
 except Exception as e:
+    logging.error(e)
     print(e)
+
+logging.info('Stop')
