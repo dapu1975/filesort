@@ -19,7 +19,7 @@ __author__ = "Daniel Pust"
 __copyright__ = "Copyright 2022, nightshadows"
 __credits__ = [""]
 __license__ = "all rights reserved"
-__version__ = "0.0.1"
+__version__ = "0.0.5"
 __maintainer__ = "Daniel Pust"
 __email__ = "pust.daniel@outlook.com"
 __status__ = "Development"
@@ -31,16 +31,27 @@ try:
     logging.info('Start')
     os.system('clear')
 
-    parser = argparse.ArgumentParser(description=__copyright__ + ' -> filesort\
-         create directorys with the name of the file extensions and copy the files there.')
-    # dryrun
-    parser.add_argument()
-    # debugmode -> logger
-    parser.add_argument()
-    # actionmode copy/move
-    parser.add_argument()
+    print('*'*80)
+    print('* ' + __copyright__ + ' (w) ' +
+          __author__ + ' / ' + __license__)
+    print('*'*80+'\n')
 
+    parser = argparse.ArgumentParser(description=__copyright__ + ' ->\
+         filesort create directorys with the name of the file extensions\
+         and copy the files there.')
+    # dryrun default=false
+    parser.add_argument("--no-dryrun", default=False, action="store_true",
+                        help="set to deactivate dryrun")
+    # debug default=false
+    parser.add_argument("--debug", default=False, action="store_true",
+                        help="activate debug mode")
+    # actionmode copy/move
+    parser.add_argument("-m", "--mode", choices=['copy', 'move'],
+                        help="select mode 'copy' or 'move'", default='copy')
     args = parser.parse_args()
+
+    if not args.no_dryrun:
+        logging.info('!!! DRYRUN !!!')
 
     # read config file
     config = configparser.ConfigParser()
@@ -94,8 +105,8 @@ try:
     for ext in extensions:
         try:
             dummy = os.path.join(target_path, ext)
-            os.makedirs(dummy, mode=0o777, exist_ok=True)
-            pass
+            if args.no_dryrun:
+                os.makedirs(dummy, mode=0o777, exist_ok=True)
         except Exception as e:
             raise UserWarning(e)
         msg = "created path {}". format(dummy)
@@ -112,16 +123,17 @@ try:
                 source = os.path.join(root, name)
                 target = os.path.join(target_path, name)
                 # copy or move file
-
-                # TODO: copy or move
-                # shutil.copyfile(source, target)
-                # shutil.move(source, target)
+                if args.no_dryrun:
+                    if args.mode == 'copy':
+                        shutil.copyfile(source, target)
+                    if args.mode == 'move':
+                        shutil.move(source, target)
                 # hash
                 hash_md5 = hs.md5()
                 with open(source, 'rb') as file:
                     buffer = file.read()
                     hash_md5.update(buffer)
-                    msg = "copy file {} to {} [HASH;{}]".format(
+                    msg = "copy/moved file {} to {} [HASH;{}]".format(
                         source, target, hash_md5.hexdigest())
                     print(msg)
                     logging.info(msg)
@@ -133,5 +145,8 @@ try:
 except Exception as e:
     logging.error(e)
     print(e)
+
+if not args.no_dryrun:
+    logging.info('!!! DRYRUN !!!')
 
 logging.info('Stop')
