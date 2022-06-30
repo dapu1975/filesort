@@ -68,6 +68,10 @@ try:
     unwanted_raw = config.get('extensions', 'unwanted')
     unwanted = unwanted_raw.lower().split(",")
 
+    wanted = []
+    wanted_raw = config.get('extensions', 'wanted')
+    wanted = wanted_raw.lower().split(",")
+
     # test source path
     if not os.path.isdir(source_path):
         msg = "non existing source path {}".format(source_path)
@@ -78,12 +82,12 @@ try:
         msg = "existing target path {}".format(target_path)
         raise UserWarning(msg)
 
-    # create target path
-    try:
-        # os.makedirs(target_path, mode = 0o777, exist_ok=True)
-        pass
-    except Exception as e:
-        raise UserWarning(e)
+    # # create target path
+    # try:
+    #     # os.makedirs(target_path, mode = 0o777, exist_ok=True)
+    #     pass
+    # except Exception as e:
+    #     raise UserWarning(e)
 
     print("walking on \"{0}\" please wait".format(source_path))
 
@@ -93,7 +97,7 @@ try:
         for name in files:
             ext = pathlib.Path(name).suffix[1:].lower()
             if (len(ext) > 0) and \
-                (ext not in unwanted) and \
+                (ext in wanted) and \
                     (ext not in extensions):
                 extensions.append(ext)
                 print("a", end='')
@@ -116,31 +120,42 @@ try:
 
     # copy files to pathes with hash and logging in logfile
     file_count = 0
+    file_errors = 0
     for root, dirs, files in os.walk(source_path):
         for name in files:
             ext = pathlib.Path(name).suffix[1:].lower()
             if ext in extensions:
                 source = os.path.join(root, name)
-                target = os.path.join(target_path, name)
-                # copy or move file
                 if args.no_dryrun:
+                    target = os.path.join(target_path, ext, name)
+                else:
+                    target = '/dev/null'
+                # copy or move file
+                try:
                     if args.mode == 'copy':
                         shutil.copyfile(source, target)
                     if args.mode == 'move':
                         shutil.move(source, target)
-                # hash
-                hash_md5 = hs.md5()
-                with open(source, 'rb') as file:
-                    buffer = file.read()
-                    hash_md5.update(buffer)
-                    msg = "copy/moved file {} to {} [HASH;{}]".format(
-                        source, target, hash_md5.hexdigest())
+                    # hash
+                    hash_md5 = hs.md5()
+                    with open(source, 'rb') as file:
+                        buffer = file.read()
+                        hash_md5.update(buffer)
+                        msg = "copy/moved file {} to {} [HASH:{}]".format(
+                            source, target, hash_md5.hexdigest())
+                        print(msg)
+                        logging.info(msg)
+                        # count files
+                        file_count += 1
+                except:
+                    msg = "!!!ERROR within handling last file!!!"
                     print(msg)
                     logging.info(msg)
-                    # count files
-                    file_count += 1
+                    file_errors += 1
+                    pass
     # write counter to log
     logging.info("Number of moved/copied files: {}".format(file_count))
+    logging.info("Number of files with error: {}".format(file_errors))
 
 except Exception as e:
     logging.error(e)
