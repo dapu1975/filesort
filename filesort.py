@@ -66,11 +66,17 @@ try:
 
     unwanted = []
     unwanted_raw = config.get('extensions', 'unwanted')
-    unwanted = unwanted_raw.lower().split(",")
+    unwanted_raw = unwanted_raw.lower()
+    unwanted_raw = unwanted_raw.replace(" ", "")
+    unwanted_raw = unwanted_raw.replace("\n", "")
+    unwanted = unwanted_raw.split(",")
 
     wanted = []
     wanted_raw = config.get('extensions', 'wanted')
-    wanted = wanted_raw.lower().split(",")
+    wanted_raw = wanted_raw.lower()
+    wanted_raw = wanted_raw.replace(" ", "")
+    wanted_raw = wanted_raw.replace("\n", "")
+    wanted = wanted_raw.split(",")
 
     # test source path
     if not os.path.isdir(source_path):
@@ -82,22 +88,15 @@ try:
         msg = "existing target path {}".format(target_path)
         raise UserWarning(msg)
 
-    # # create target path
-    # try:
-    #     # os.makedirs(target_path, mode = 0o777, exist_ok=True)
-    #     pass
-    # except Exception as e:
-    #     raise UserWarning(e)
-
     print("walking on \"{0}\" please wait".format(source_path))
 
     # create extensions list only with wanted and lower extensions
     extensions = []
     for root, dirs, files in os.walk(source_path):
         for name in files:
-            ext = pathlib.Path(name).suffix[1:].lower()
+            ext = pathlib.Path(name).suffix[1:]
             if (len(ext) > 0) and \
-                (ext in wanted) and \
+                (ext.lower() in wanted) and \
                     (ext not in extensions):
                 extensions.append(ext)
                 print("a", end='')
@@ -108,7 +107,7 @@ try:
     # create target pathes
     for ext in extensions:
         try:
-            dummy = os.path.join(target_path, ext)
+            dummy = os.path.join(target_path, ext.lower())
             if args.no_dryrun:
                 os.makedirs(dummy, mode=0o777, exist_ok=True)
         except Exception as e:
@@ -123,11 +122,11 @@ try:
     file_errors = 0
     for root, dirs, files in os.walk(source_path):
         for name in files:
-            ext = pathlib.Path(name).suffix[1:].lower()
+            ext = pathlib.Path(name).suffix[1:]
             if ext in extensions:
                 source = os.path.join(root, name)
                 if args.no_dryrun:
-                    target = os.path.join(target_path, ext, name)
+                    target = os.path.join(target_path, ext.lower(), name)
                 else:
                     target = '/dev/null'
                 # copy or move file
