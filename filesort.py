@@ -19,7 +19,7 @@ __author__ = "Daniel Pust"
 __copyright__ = "Copyright 2022, nightshadows"
 __credits__ = [""]
 __license__ = "all rights reserved"
-__version__ = "0.0.5"
+__version__ = "0.1.0"
 __maintainer__ = "Daniel Pust"
 __email__ = "pust.daniel@outlook.com"
 __status__ = "Development"
@@ -147,12 +147,13 @@ try:
                         logging.info(msg)
                         # count files
                         file_count += 1
+                except KeyboardInterrupt:
+                    exit
                 except:
                     msg = "!!!ERROR within handling last file!!!"
                     print(msg)
                     logging.info(msg)
                     file_errors += 1
-                    pass
     # write counter to log
     logging.info("Number of moved/copied files: {}".format(file_count))
     logging.info("Number of files with error: {}".format(file_errors))
